@@ -10,25 +10,48 @@ angular.module('myApp.view1', [ 'ngRoute' ])
 } ])
 
 .controller('View1Ctrl', ['$scope', '$location', 'objektService', function($scope, $location, objektService) {
-	$scope.newItem = {};
-	$scope.setFile = function(element) {
-		console.log(element);
-		var reader = new FileReader();
-		var file = element.files[0];
-		if (file) {
-			console.log("has file");
-			reader.readAsDataURL(file);
-			reader.addEventListener("loadend", function(r) {
-				// console.log(r.target.result);
-				$scope.newItem.image = r.target.result;
-				$scope.$digest();
-			})
-		}
+	$scope.newItem = {
+			mobile: false
+	};
+	$scope.setMobile = function(elment) {
+			console.log(element);
+			$scope.newItem.mobile = element.checked;
 	}
-	
+
+	$scope.setFile = function(element) {
+			console.log(element);
+			var reader = new FileReader();
+			var file = element.files[0];
+			if (file) {
+					console.log("has file");
+					reader.readAsDataURL(file);
+					reader.addEventListener("loadend", function(r) {
+							// console.log(r.target.result);
+							$scope.newItem.image = r.target.result;
+							$scope.$digest();
+							$("#category-input").focus();
+					})
+			}
+	}
+
+	$('.datepicker').pickadate({
+			selectMonths: true, // Creates a dropdown to control month
+			selectYears: 5 // Creates a dropdown of 15 years to control year
+	});
+
+	$('input.autocomplete').autocomplete({
+			data: {
+					"Apple": null,
+					"Microsoft": null,
+					"Google": 'http://placehold.it/250x250'
+			}
+	});
+
 	$scope.onSubmit = function() {
-		objektService.addObjekt($scope.newItem);
-		$location.path('/deckung');
+			$scope.newItem.category = $('#category-input').val();
+			$scope.newItem.buyDate = $('.datepicker').val();
+			objektService.addObjekt($scope.newItem);
+			$location.path('/deckung');
 	}
 
 //	$("#form").submit(function(e) {

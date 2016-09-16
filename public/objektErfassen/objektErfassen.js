@@ -9,7 +9,7 @@ angular.module('myApp.view1', [ 'ngRoute' ])
 	});
 } ])
 
-.controller('View1Ctrl', ['$scope', function($scope) {
+.controller('View1Ctrl', ['$scope', '$http', function($scope, $http) {
 	$scope.newItem = {};
 	$scope.setFile = function(element) {
 		console.log(element);
@@ -24,6 +24,10 @@ angular.module('myApp.view1', [ 'ngRoute' ])
 				$scope.$digest();
 			})
 		}
+	}
+	
+	$scope.onSubmit = function() {
+		//$http.post('/items', asd);
 	}
 
 //	$("#form").submit(function(e) {

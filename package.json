@@ -1,0 +1,25 @@
+{
+  "name": "istdasversichert",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "frontend": "reload -b -d ./public",
+    "backend": "json-server --watch db.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianberinger/istdasversichert.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/ianberinger/istdasversichert/issues"
+  },
+  "homepage": "https://github.com/ianberinger/istdasversichert#readme",
+  "devDependencies": {
+    "json-server": "^0.8.21",
+    "reload": "^1.0.1"
+  }
+}

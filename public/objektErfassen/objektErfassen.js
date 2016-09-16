@@ -9,7 +9,7 @@ angular.module('myApp.view1', [ 'ngRoute' ])
 	});
 } ])
 
-.controller('View1Ctrl', ['$scope', '$http', function($scope, $http) {
+.controller('View1Ctrl', ['$scope', '$location', 'objektService', function($scope, $location, objektService) {
 	$scope.newItem = {};
 	$scope.setFile = function(element) {
 		console.log(element);
@@ -27,7 +27,8 @@ angular.module('myApp.view1', [ 'ngRoute' ])
 	}
 	
 	$scope.onSubmit = function() {
-		//$http.post('/items', asd);
+		objektService.addObjekt($scope.newItem);
+		$location.path('deckung');
 	}
 
 //	$("#form").submit(function(e) {

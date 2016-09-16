@@ -1,0 +1,54 @@
+<div class="col s12">
+	<form id="form" ng-submit="onSubmit(this)">
+		<div class="row">
+				<div class="file-field input-field" ng-if="!newItem.image">
+					<div class="waves-effect waves-light btn-large blue darken-4" style="width:100%">
+						<span>Foto</span> <input accept="image/*" id="upload" type="file" onchange="angular.element(this).scope().setFile(this)">
+					</div>
+			</div>
+			<img class="col s12" id="picture" alt="Embedded Image" ng-if="newItem.image" ng-src="{{newItem.image}}" />
+		</div>
+
+		<div class="row">
+			<div class="input-field col s12">
+				<input type="text" id="category-input" class="autocomplete validate" ng-model="newItem.category" />
+				<label for="category-input">Kategorie</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s12">
+				<input type="text" id="beschreibung-input" class="validate" ng-model="newItem.description"></input>
+				<label for="beschreibung-input">Beschreibung</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s12">
+				<input id="price" type="number" class="validate" ng-model="newItem.price">
+				<label for="price">Preis (CHF)</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s12">
+				<input id="buyDate" type="date" class="datepicker" placeholder="Kaufdatum">
+				<!--<label for="buyDate">Kaufdatum</label>-->
+			</div>
+		</div>
+
+		<div class="row">
+			<p class="col s12">
+				<input type="checkbox" class="filled-in" id="mobile" ng-model="newItem.mobile"/>
+				<label for="mobile">Mobil?</label>
+			</p>
+		</div>
+
+		<div class="row">
+			<button class="btn-large waves-effect waves-light blue darken-4" type="submit" name="action" style="width: 100%">
+						Versicherung prüfen <i class="material-icons right">send</i>
+			</button>
+		</div>
+		</div>
+	</form>
+</div>

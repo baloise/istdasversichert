@@ -1,7 +1,7 @@
 
 <div class="row">
 	<div class="col s12">
-		<form id="form">
+		<form id="form" ng-submit="onSubmit()">
 			<div class="file-field input-field col s12">
 				<div class="btn">
 					<span>File</span> <input accept="image/*" id="upload" type="file" onchange="angular.element(this).scope().setFile(this)">
@@ -13,14 +13,18 @@
 			<img class="col s12" id="picture" alt="Embedded Image" ng-if="newItem.image" ng-src="{{newItem.image}}" />
 
 			<div class="input-field col s12">
-				<input type="text" id="category-input" class="autocomplete">
+				<input type="text" id="category-input" class="autocomplete" ng-model="newItem.category"/>
 				<label for="category-input">Kategorie</label>
 			</div>
-
+			
+			<div class="input-field col s12">
+				<textarea type="text" id="beschreibung-input" class="materialize-textarea" ng-model="newItem.description"></textarea>
+				<label for="beschreibung-input">Beschreibung</label>
+			</div>
 
 			<p class="col s12">
 				<input type="checkbox" class="filled-in" id="mobile"
-					checked="checked" /> <label for="filled-in-box">Mobil?</label>
+					checked="checked" ng-model="newItem.mobile" /> <label for="filled-in-box">Mobil?</label>
 			</p>
 
 			<button class="btn waves-effect waves-light" type="submit"

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ianberinger/istdasversichert#readme",
   "devDependencies": {
+    "bower": "^1.7.9",
     "json-server": "^0.8.21",
     "reload": "^1.0.1"
   }

@@ -28,7 +28,7 @@ angular.module('myApp.view1', [ 'ngRoute' ])
 	
 	$scope.onSubmit = function() {
 		objektService.addObjekt($scope.newItem);
-		$location.path('deckung');
+		$location.path('/deckung');
 	}
 
 //	$("#form").submit(function(e) {

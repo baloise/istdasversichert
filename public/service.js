@@ -1,4 +1,4 @@
-var myModule = angular.module('myApp', []);
+var myModule = angular.module('myApp');
 myModule.factory('objektService', function() {
 
 	var currentObjekt = undefined;

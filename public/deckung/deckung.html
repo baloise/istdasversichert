@@ -1,5 +1,16 @@
 
 <div class="row">
-	<div class="col s12">deckung
+	<div class="col s12">
+		<table class="bordered">
+			<thead></thead>
+				<tr><th></th><th>Zu Hause</th><th>Unterwegs</th></tr>
+			<tbody>
+				<tr ng-repeat="deckung in deckungen">
+					<td>{{deckung.name}}</td>
+					<td><i class="material-icons">{{icon(deckung.home)}}</i></td>
+					<td><i class="material-icons">{{icon(deckung.travel)}}</i></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>

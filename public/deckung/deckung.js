@@ -13,6 +13,10 @@ angular.module('myApp.deckung', [ 'ngRoute' ])
 		'deckungCtrl',
 		[ '$scope', '$location', 'objektService',
 				function($scope, $location, objektService) {
-					// $scope.deckung = objektService.deckung();
-
+					$scope.deckungen = objektService.deckung();
+					$scope.icon = function(element) {
+						if (element.unterdeckung) 	{ return "error_outline"; }
+						if (element.gedeckt) 		{ return "done"; }
+						if (!element.versicherbar) 	{ return "not_interested"; }
+					};
 				} ]);

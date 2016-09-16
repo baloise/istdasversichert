@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.view1', [ 'ngRoute' ])
+angular.module('myApp.objektErfassen', [ 'ngRoute' ])
 
 .config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/objektErfassen', {
-		templateUrl : 'objektErfassen/view1.html',
-		controller : 'View1Ctrl'
+		templateUrl : 'objektErfassen/objektErfassen.html',
+		controller : 'objektErfassen'
 	});
 } ])
 
-.controller('View1Ctrl', ['$scope', '$location', 'objektService', function($scope, $location, objektService) {
+.controller('objektErfassen', ['$scope', '$location', 'objektService', function($scope, $location, objektService) {
 	$scope.newItem = {
 			mobile: false
 	};

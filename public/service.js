@@ -23,24 +23,7 @@ myModule.factory('objektService', function($http) {
             },
             übrigeRisiken: false,
         },
-        "Schmuck, Arband- und Taschenuhren": {
-            zuHause: {
-                feuerElementar: "Z1",
-                raubEinbruch: "Z1",
-                diebstahl: "Z1",
-                wasser: "Z1",
-                glasbruch: "Z1"
-            },
-            auswärts: {
-                feuerElementar: "z1",
-                raubEinbruch: "z1",
-                diebstahl: "z1",
-                wasser: "z1",
-                glasbruch: false
-            },
-            übrigeRisiken: "Z17",
-        },
-        "Schmuck, Arband- und Taschenuhren": {
+        "Schmuck, Armband- und Taschenuhren": {
             zuHause: {
                 feuerElementar: "Z1",
                 raubEinbruch: "Z1",
@@ -586,7 +569,6 @@ myModule.factory('objektService', function($http) {
         g2 : 3000,
         G3 : 125000,
         g3 : 10000,
-        Z4 : 10000,
         Z14 : 25000,
         Z17 : 3000,
         Z1 : 10000,

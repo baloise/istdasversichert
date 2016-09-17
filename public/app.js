@@ -10,4 +10,9 @@ angular.module('myApp', [
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
   $routeProvider.otherwise({redirectTo: '/objektErfassen'});
+}])
+.controller('NavbarController', ['$scope', '$location', function($scope, $location) {
+  $scope.activeClass = function(path) {
+    return $location.path() === '/' + path ? 'active' : '';
+  }
 }]);

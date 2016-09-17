@@ -574,10 +574,10 @@ myModule.factory('objektService', function($http) {
 
     var resolveDeckung = function resolveDeckung(objekt) {
 
-      objekt = objekt || {
-        category : "Beleuchtungskörper",
-        price : 1234
-      }
+//      objekt = objekt || {
+//        category : "Beleuchtungskörper",
+//        price : 1234
+//      }
       
       var police = {
         G1 : 150000,

@@ -23,8 +23,8 @@
 <div class="row">
 	<div class="col s12">
 		<div ng-repeat="selectedDeckung in selectedDeckungen">
-			<span ng-show="unterdeckungSelected">Deckung {{selectedDeckung.risk}} für CHF 15,- / Jahr erhöhen.</span>
-			<span ng-show="fehlendeDeckungSelected">Deckung {{selectedDeckung.risk}} für CHF 15,- / Jahr einschliessen.</span>
+			<span ng-show="deckung.unterdeckung">Deckung {{selectedDeckung.risk}} für CHF 15,- / Jahr erhöhen.</span>
+			<span ng-show="!deckung.gedeckt && deckung.versicherbar">Deckung {{selectedDeckung.risk}} für CHF 15,- / Jahr einschliessen.</span>
 		</div>
 	</div>
 </div>

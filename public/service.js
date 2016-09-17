@@ -558,7 +558,7 @@ myModule.factory('objektService', function($http) {
 
       return {
         gedeckt :  isGedeckt,
-        versicherbar : risk === false,
+        versicherbar : risk !== false,
         unterdeckung : unterdeckung,
         risk : risk
       }
@@ -574,6 +574,11 @@ myModule.factory('objektService', function($http) {
 
     var resolveDeckung = function resolveDeckung(objekt) {
 
+      objekt = objekt || {
+        category : "Beleuchtungskörper",
+        price : 1234
+      }
+      
       var police = {
         G1 : 150000,
         g1 : 10000,

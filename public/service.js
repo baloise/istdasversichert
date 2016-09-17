@@ -547,8 +547,8 @@ myModule.factory('objektService', function($http) {
     }
 
 
-    var policeCoverageForRisk = function(objekt, police, categoryRiskDetails, categoryType) {
-      var risk = categoryRiskDetails[categoryType];
+    var policeCoverageForRisk = function(objekt, police, categoryRiskDetails, categoryType, fixRisk) {
+      var risk = categoryRiskDetails ? categoryRiskDetails[categoryType] : fixRisk;
       
       var policeRisikoDeckung = police[risk];
       var isGedeckt = !(policeRisikoDeckung === false || policeRisikoDeckung === undefined);
@@ -564,11 +564,11 @@ myModule.factory('objektService', function($http) {
       }
     }
     
-    var policeCoverageForCategory = function(objekt, police, categoryDetails, categoryType, categoryName) {
+    var policeCoverageForCategory = function(objekt, police, categoryDetails, categoryType, categoryName, fixRisk) {
       return {
           name : categoryName,
-          home : policeCoverageForRisk(objekt, police, categoryDetails.zuHause, categoryType),
-          travel : policeCoverageForRisk(objekt, police, categoryDetails.auswärts, categoryType)
+          home : policeCoverageForRisk(objekt, police, categoryDetails ? categoryDetails.zuHause : null, categoryType, fixRisk),
+          travel : policeCoverageForRisk(objekt, police, categoryDetails ? categoryDetails.auswärts : null, categoryType, fixRisk)
         }
     }
 
@@ -598,6 +598,7 @@ myModule.factory('objektService', function($http) {
       result.raubEinbruch = policeCoverageForCategory(objekt, police, categoryDescription, "raubEinbruch", "Raub/Einbruch");
       result.wasser = policeCoverageForCategory(objekt, police, categoryDescription, "wasser", "Wasser");
       result.glasbruch = policeCoverageForCategory(objekt, police, categoryDescription, "glasbruch", "Glasbruch");
+      result.uebrige = policeCoverageForCategory(objekt, police, null, "glasbruch", "Übrige risiken", categoryDescription.übrigeRisiken);
       return result;
     }
     

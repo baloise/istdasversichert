@@ -60,15 +60,22 @@ angular.module('myApp.deckung', [ 'ngRoute' ])
             }
             ;
           };
-
-          $scope.unterdeckungSelected = false;
-          $scope.fehlendeDeckungSelected = false;
+          
+          $scope.selectedDeckungen = [];
 
           $scope.selectDeckung = function(deckung) {
-            $scope.unterdeckungSelected = deckung.unterdeckung;
-            $scope.fehlendeDeckungSelected = !deckung.gedeckt
-                && deckung.versicherbar;
-            $scope.selectedDeckung = deckung;
+            if (!deckung.versicherbar || deckung.gedeckt) {
+              return;
+            }
+            
             deckung.selected = !deckung.selected;
+            if (deckung.selected) {
+              $scope.selectedDeckungen.push[deckung];
+            } else {
+              var i = $scope.selectedDeckungen.indexOf(deckung);
+              if (i >= 0) {
+                $scope.selectedDeckungen.splice(i, 1);
+              }
+            }
           }
         } ]);

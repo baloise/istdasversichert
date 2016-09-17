@@ -5,28 +5,39 @@
 	<div class="col s12">
 		<table class="bordered">
 			<thead></thead>
-				<tr><th></th><th>Zu Hause</th><th>Unterwegs</th></tr>
+			<tr>
+				<th></th>
+				<th>Zu Hause</th>
+				<th>Unterwegs</th>
+			</tr>
 			<tbody>
 				<tr ng-repeat="deckung in deckungen">
 					<td>{{deckung.name}}</td>
-					<td ng-click="selectDeckung(deckung.home)"><i class="material-icons">{{icon(deckung.home)}}</i></td>
-					<td ng-click="selectDeckung(deckung.travel)"><i class="material-icons">{{icon(deckung.travel)}}</i></td>
+					<td ng-click="selectDeckung(deckung.home)"><i class="{{iconColor(deckung.home)}}">{{icon(deckung.home)}}</i></td>
+					<td  ng-click="selectDeckung(deckung.travel)"><i class="{{iconColor(deckung.travel)}}">{{icon(deckung.travel)}}</i></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
 <div class="row">
-	<div class="col s12">
+	<div class="col s12">{{deckungen}}
 		<span ng-show="unterdeckungSelected">Deckung {{selectedDeckung.risk}} für CHF 15,- / Jahr erhöhen.</span>
 		<span ng-show="fehlendeDeckungSelected">Deckung {{selectedDeckung.risk}} für CHF 15,- / Jahr einschliessen.</span>
 	</div>
 </div>
+
 <div class="row">
-	<a class="btn-large waves-effect waves-light blue darken-4"
-		style="width: 100%"
-		ng-click="addToInventory(currentObjekt)"
-	>
-				Zum Inventar hinzufügen <i class="material-icons right">send</i>
+<a class="btn-large waves-effect waves-light blue darken-4" style="width: 100%" ng-click="addToInventory(currentObjekt)" ng-if="!currentObjekt.inInventory">				Zum Inventar hinzufügen <i class="material-icons right">send</i>
 	</a>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal bottom-sheet">
+	<div class="modal-content">
+		<p>Zum Inventar hinzugefügt</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#!/inventar" class="modal-action modal-close waves-effect waves-green btn-flat">Zum Inventar</a>
+		<a href="#!/" class="modal-action modal-close waves-effect waves-green btn-flat">Schliessen</a>
+	</div>
 </div>

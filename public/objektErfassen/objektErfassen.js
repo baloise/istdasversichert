@@ -40,12 +40,9 @@ angular.module('myApp.objektErfassen', [ 'ngRoute' ])
 	});
 	$scope.autocomplete = {data: {}};
 	$scope.keys = Object.keys(objektService.kategorien());
-	console.log($scope.keys.length);
-
 
 	for (var i = 0; i < $scope.keys.length; i++) {
 		var key = $scope.keys[i];
-		console.log(key);
 		$scope.autocomplete.data[key] = null;
 	};
 

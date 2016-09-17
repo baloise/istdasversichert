@@ -2,6 +2,7 @@ var myModule = angular.module('myApp');
 myModule.factory('objektService', function($http) {
 
     var host = 'http://localhost:3000';
+    
     var currentObjekt = undefined;
 
     var kategorien = {
@@ -545,6 +546,46 @@ myModule.factory('objektService', function($http) {
         "Luftfahrzeuge": false
     }
 
+
+    var policeCoverageForRisk = function(objekt, police, categoryRiskDetails, categoryType) {
+      var risk = categoryRiskDetails[categoryType];
+      
+      var policeRisikoDeckung = police[risk];
+      var isGedeckt = !(policeRisikoDeckung === false || policeRisikoDeckung === undefined);
+      
+      var diff = policeRisikoDeckung - objekt.price;
+      var unterdeckung = diff < 0 ? diff : false;
+      
+      return {
+        gedeckt :  isGedeckt,
+        versicherbar : risk === false,
+        unterdeckung : unterdeckung
+      }
+    }
+    
+    var policeCoverageForCategory = function(objekt, police, categoryDetails, categoryType, categoryName) {
+      return {
+          name : categoryName,
+          home : policeCoverageForRisk(objekt, police, categoryDetails.zuHause, categoryType),
+          travel : policeCoverageForRisk(objekt, police, categoryDetails.auswärts, categoryType)
+        }
+    }
+
+    var resolveDeckung = function resolveDeckung(objekt) {
+
+      var police = {
+        G1 : 10000,
+        xG2 : 50000
+      };
+
+      var categoryDescription = kategorien[objekt.category];
+      var result = {};
+      result.feuerElementar = policeCoverageForCategory(objekt, police, categoryDescription, "feuerElementar", "Feuer/Elementar");
+      result.diebstahl = policeCoverageForCategory(objekt, police, categoryDescription, "diebstahl", "Diebstahl");
+      result.raubEinbruch = policeCoverageForCategory(objekt, police, categoryDescription, "raubEinbruch", "Raub/Einbruch");
+      return result;
+    }
+    
     return {
         addObjekt: function(objekt) {
             currentObjekt = objekt;
@@ -559,47 +600,7 @@ myModule.factory('objektService', function($http) {
             return $http.get(host + '/items');
         },
         deckung: function() {
-            return {
-                feuerElementar: {
-                    name: "Feuer/Elementar",
-                    home: {
-                        gedeckt: true,
-                        versicherbar: true,
-                        unterdeckung: false
-                    },
-                    travel: {
-                        gedeckt: true,
-                        versicherbar: true,
-                        unterdeckung: 2000
-                    }
-                },
-                diebstahl: {
-                    name: "Diebstahl",
-                    home: {
-                        gedeckt: true,
-                        versicherbar: true,
-                        unterdeckung: 2000
-                    },
-                    travel: {
-                        gedeckt: true,
-                        versicherbar: true,
-                        unterdeckung: 2000
-                    }
-                },
-                wasser: {
-                    name: "Wasserschaden",
-                    home: {
-                        gedeckt: true,
-                        versicherbar: true,
-                        unterdeckung: 2000
-                    },
-                    travel: {
-                        gedeckt: true,
-                        versicherbar: true,
-                        unterdeckung: 2000
-                    }
-                },
-            }
+          return resolveDeckung(currentObjekt);
         }
     };
 });

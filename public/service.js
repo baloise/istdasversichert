@@ -559,7 +559,8 @@ myModule.factory('objektService', function($http) {
       return {
         gedeckt :  isGedeckt,
         versicherbar : risk === false,
-        unterdeckung : unterdeckung
+        unterdeckung : unterdeckung,
+        risk : risk
       }
     }
     

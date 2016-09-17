@@ -589,7 +589,7 @@ myModule.factory('objektService', function($http) {
         Z4 : 10000,
         Z14 : 25000,
         Z17 : 3000,
-        z1 : 10000,
+        Z1 : 10000,
         z1 : 3000,
         Z2 : 1000,
         z2 : 1000

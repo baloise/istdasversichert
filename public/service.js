@@ -574,15 +574,29 @@ myModule.factory('objektService', function($http) {
     var resolveDeckung = function resolveDeckung(objekt) {
 
       var police = {
-        G1 : 10000,
-        xG2 : 50000
+        G1 : 150000,
+        g1 : 10000,
+        G2 : 125000,
+        g2 : 3000,
+        G3 : 125000,
+        g3 : 10000,
+        Z4 : 10000,
+        Z14 : 25000,
+        Z17 : 3000,
+        z1 : 10000,
+        z1 : 3000,
+        Z2 : 1000,
+        z2 : 1000
       };
 
       var categoryDescription = kategorien[objekt.category];
+
       var result = {};
       result.feuerElementar = policeCoverageForCategory(objekt, police, categoryDescription, "feuerElementar", "Feuer/Elementar");
       result.diebstahl = policeCoverageForCategory(objekt, police, categoryDescription, "diebstahl", "Diebstahl");
       result.raubEinbruch = policeCoverageForCategory(objekt, police, categoryDescription, "raubEinbruch", "Raub/Einbruch");
+      result.wasser = policeCoverageForCategory(objekt, police, categoryDescription, "wasser", "Wasser");
+      result.glasbruch = policeCoverageForCategory(objekt, police, categoryDescription, "glasbruch", "Glasbruch");
       return result;
     }
     

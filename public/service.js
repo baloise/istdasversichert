@@ -1,8 +1,8 @@
 var myModule = angular.module('myApp');
 myModule.factory('objektService', function($http) {
 
-    var host = 'http://localhost:3000';
-    
+    var host = '';
+
     var currentObjekt = undefined;
 
     var kategorien = {
@@ -552,10 +552,10 @@ myModule.factory('objektService', function($http) {
       
       var policeRisikoDeckung = police[risk];
       var isGedeckt = !(policeRisikoDeckung === false || policeRisikoDeckung === undefined);
-      
+
       var diff = policeRisikoDeckung - objekt.price;
       var unterdeckung = diff < 0 ? diff : false;
-      
+
       return {
         gedeckt :  isGedeckt,
         versicherbar : risk === false,
@@ -563,7 +563,7 @@ myModule.factory('objektService', function($http) {
         risk : risk
       }
     }
-    
+
     var policeCoverageForCategory = function(objekt, police, categoryDetails, categoryType, categoryName, fixRisk) {
       return {
           name : categoryName,
@@ -601,7 +601,7 @@ myModule.factory('objektService', function($http) {
       result.uebrige = policeCoverageForCategory(objekt, police, null, "glasbruch", "Übrige risiken", categoryDescription.übrigeRisiken);
       return result;
     }
-    
+
     return {
 				kategorien: function() {
 					return kategorien;

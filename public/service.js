@@ -601,6 +601,9 @@ myModule.factory('objektService', function($http) {
     }
     
     return {
+				kategorien: function() {
+					return kategorien;
+				},
         addObjekt: function(objekt) {
             currentObjekt = objekt;
         },

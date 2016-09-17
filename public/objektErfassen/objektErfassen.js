@@ -38,14 +38,19 @@ angular.module('myApp.objektErfassen', [ 'ngRoute' ])
 			selectMonths: true, // Creates a dropdown to control month
 			selectYears: 5 // Creates a dropdown of 15 years to control year
 	});
+	$scope.autocomplete = {data: {}};
+	$scope.keys = Object.keys(objektService.kategorien());
+	console.log($scope.keys.length);
 
-	$('input.autocomplete').autocomplete({
-			data: {
-					"Apple": null,
-					"Microsoft": null,
-					"Google": 'http://placehold.it/250x250'
-			}
-	});
+
+	for (var i = 0; i < $scope.keys.length; i++) {
+		var key = $scope.keys[i];
+		console.log(key);
+		$scope.autocomplete.data[key] = null;
+	};
+
+
+	$('input.autocomplete').autocomplete($scope.autocomplete);
 
 	$scope.onSubmit = function() {
 			$scope.newItem.category = $('#category-input').val();

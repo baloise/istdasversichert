@@ -19,4 +19,15 @@ angular.module('myApp.deckung', [ 'ngRoute' ])
 						if (element.gedeckt) 		{ return "done"; }
 						if (!element.versicherbar) 	{ return "not_interested"; }
 					};
-				} ]);
+					$scope.currentObjekt = objektService.getCurrentObjekt();
+					$scope.addToInventory = function(objekt) {
+						if (objekt) {
+							objektService
+								.postObjektToInventory(objekt)
+								.then(function(response) {
+									console.log('added objekt');
+								});
+						};
+					};
+				}
+			]);

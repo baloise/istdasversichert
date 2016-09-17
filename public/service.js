@@ -1,11 +1,21 @@
 var myModule = angular.module('myApp');
-myModule.factory('objektService', function() {
+myModule.factory('objektService', function($http) {
 
+	var host = 'http://localhost:3000';
 	var currentObjekt = undefined;
 
 	return {
 		addObjekt : function(objekt) {
-			this.currentObjekt = objekt;
+			currentObjekt = objekt;
+		},
+		getCurrentObjekt: function() {
+			return currentObjekt;
+		},
+		postObjektToInventory: function(objekt) {
+			return $http.post(host + '/items', objekt || currentObjekt);
+		},
+		fetchObjekte: function() {
+			return $http.get(host + '/items');
 		},
 		deckung : function() {
 			return {

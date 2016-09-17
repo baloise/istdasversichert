@@ -549,7 +549,7 @@ myModule.factory('objektService', function($http) {
 
     var policeCoverageForRisk = function(objekt, police, categoryRiskDetails, categoryType, fixRisk) {
       var risk = categoryRiskDetails ? categoryRiskDetails[categoryType] : fixRisk;
-      
+
       var policeRisikoDeckung = police[risk];
       var isGedeckt = !(policeRisikoDeckung === false || policeRisikoDeckung === undefined);
 
@@ -578,7 +578,7 @@ myModule.factory('objektService', function($http) {
 //        category : "Beleuchtungskörper",
 //        price : 1234
 //      }
-      
+
       var police = {
         G1 : 150000,
         g1 : 10000,
@@ -603,7 +603,7 @@ myModule.factory('objektService', function($http) {
       result.raubEinbruch = policeCoverageForCategory(objekt, police, categoryDescription, "raubEinbruch", "Raub/Einbruch");
       result.wasser = policeCoverageForCategory(objekt, police, categoryDescription, "wasser", "Wasser");
       result.glasbruch = policeCoverageForCategory(objekt, police, categoryDescription, "glasbruch", "Glasbruch");
-      result.uebrige = policeCoverageForCategory(objekt, police, null, "glasbruch", "Übrige risiken", categoryDescription.übrigeRisiken);
+      result.uebrige = policeCoverageForCategory(objekt, police, null, "glasbruch", "Übrige Risiken", categoryDescription.übrigeRisiken);
       return result;
     }
 

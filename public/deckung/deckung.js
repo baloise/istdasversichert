@@ -19,36 +19,36 @@ angular.module('myApp.deckung', [ 'ngRoute' ])
 
           $scope.deckungen = objektService.deckung();
           $scope.icon = function(element) {
-            if (!element.versicherbar) {
-              return "not_interested";
-            }
-            if (element.unterdeckung) {
-              return "error_outline";
-            }
-            if (element.gedeckt) {
-              return "done";
-            }
-            if (!element.gedeckt) {
-              return "not_interested";
-            }
+              if (element.versicherbar) {
+                  if (element.gedeckt) {
+                      if (element.unterdeckung) {
+                          return "error_outline";
+                      }
+                      return "done";
+                  } else {
+                      return "error_outline";
+                  }
+              } else {
+                  return "not_interested";
+              }
           };
-
           $scope.iconColor = function(element) {
-            if (element.selected) {
-              return "material-icons icon-blue";
-            }
-            if (element.unterdeckung) {
-              return "material-icons icon-yellow";
-            }
-            if (element.gedeckt) {
-              return "material-icons icon-green";
-            } else {
-              return "material-icons icon-red";
-            }
-            if (!element.versicherbar) {
-              return "material-icons icon-grey";
-            }
-          }
+              if (element.selected) {
+                return "material-icons icon-blue";
+              }
+              if (element.versicherbar) {
+                  if (element.gedeckt) {
+                      if (element.unterdeckung) {
+                          return "material-icons icon-yellow";
+                      }
+                      return "material-icons icon-green";
+                  } else {
+                      return "material-icons icon-red";
+                  }
+              } else {
+                  return "material-icons icon-grey";
+              }
+          };
           $scope.currentObjekt = objektService.getCurrentObjekt();
           $scope.addToInventory = function(objekt) {
             if (objekt) {
@@ -60,14 +60,14 @@ angular.module('myApp.deckung', [ 'ngRoute' ])
             }
             ;
           };
-          
+
           $scope.selectedDeckungen = [];
 
           $scope.selectDeckung = function(deckung) {
-            if (!deckung.versicherbar || deckung.gedeckt) {
+            if (!((deckung.versichbar && !deckung.gedeckt) || (deckung.gedeckt && deckung.unterdeckung < 0))) {
               return;
             }
-            
+
             deckung.selected = !deckung.selected;
             if (deckung.selected) {
               $scope.selectedDeckungen.push[deckung];

@@ -9,8 +9,8 @@ angular.module('myApp.inventar', ['ngRoute'])
   });
 }])
 
-.controller('inventar', [function() {
-    $.get("http://192.168.1.124:3000/items/2", function(data) {
-        $("#card1").attr("src", data.image);
-    })
+.controller('inventar', ['objektService', function(objektService) {
+  objektService.fetchObjekte().then(function(response) {
+    $("#card1").attr("src", response.data[0].image)
+  })
 }]);

@@ -22,10 +22,11 @@ angular.module('myApp.deckung', [ 'ngRoute' ])
 					$scope.currentObjekt = objektService.getCurrentObjekt();
 					$scope.addToInventory = function(objekt) {
 						if (objekt) {
+							objekt.inInventory = true;
 							objektService
 								.postObjektToInventory(objekt)
 								.then(function(response) {
-									console.log('added objekt');
+									$('#modal1').openModal();
 								});
 						};
 					};

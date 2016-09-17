@@ -63,6 +63,14 @@ angular.module('myApp.deckung', [ 'ngRoute' ])
 
           $scope.selectedDeckungen = [];
 
+          $scope.nichtgedeckt = function(deckung) {
+            return (deckung.versichbar && !deckung.gedeckt);
+          }
+
+          $scope.unterdeckung = function(deckung) {
+            return (deckung.gedeckt && deckung.unterdeckung < 0);
+          }
+
           $scope.selectDeckung = function(deckung) {
             if (!((deckung.versichbar && !deckung.gedeckt) || (deckung.gedeckt && deckung.unterdeckung < 0))) {
               return;
@@ -70,7 +78,7 @@ angular.module('myApp.deckung', [ 'ngRoute' ])
 
             deckung.selected = !deckung.selected;
             if (deckung.selected) {
-              $scope.selectedDeckungen.push[deckung];
+              $scope.selectedDeckungen.push(deckung);
             } else {
               var i = $scope.selectedDeckungen.indexOf(deckung);
               if (i >= 0) {

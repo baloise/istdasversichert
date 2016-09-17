@@ -1,16 +1,32 @@
       <div class="row">
       <div class="col s12 m7">
 
-        <div class="card">
+        <div class="card"
+             ng-repeat="objekt in objekte">
           <div class="card-image waves-effect waves-block waves-light">
-            <img id="card1" class="activator" src="">
+            <img id="card1" class="activator" ng-src="{{objekt.image}}">
           </div>
           <div class="card-content">
-            <span class="card-title activator blue-text text-darken-4">TODO Titel<i class="material-icons right">more_vert</i></span>
+            <span class="card-title activator blue-text text-darken-4">{{objekt.category}}<i class="material-icons right">more_vert</i></span>
           </div>
           <div class="card-reveal">
-            <span class="card-title blue-text text-darken-4">TODO Titel<i class="material-icons right">close</i></span>
-            <p>TODO Deckungsinfos</p>
+            <span class="card-title blue-text text-darken-4">{{objekt.category}}<i class="material-icons right">close</i></span>
+            <dl>
+              <dt>Beschreibung</dt>
+              <dd>{{objekt.description}}</dd>
+            </dl>
+            <dl>
+              <dt>Preis</dt>
+              <dd>{{objekt.price}} CHF</dd>
+            </dl>
+            <dl>
+              <dt>Kaufdatum</dt>
+              <dd>{{objekt.buyDate}}</dd>
+            </dl>
+            <dl>
+              <dt>Mobil?</dt>
+              <dd>{{objekt.mobile}}</dd>
+            </dl>
           </div>
         </div>
       </div>

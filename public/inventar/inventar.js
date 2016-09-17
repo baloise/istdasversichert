@@ -9,8 +9,8 @@ angular.module('myApp.inventar', ['ngRoute'])
   });
 }])
 
-.controller('inventar', ['objektService', function(objektService) {
+.controller('inventar', ['objektService', '$scope', function(objektService, $scope) {
   objektService.fetchObjekte().then(function(response) {
-    $("#card1").attr("src", response.data[0].image)
+    $scope.objekte = response.data;
   })
 }]);
